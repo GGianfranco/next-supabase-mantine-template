@@ -1,6 +1,7 @@
 import { AddFoodForm } from "@/components/AddFoodForm/AddFoodForm";
 import { showNotificationError } from "@/utils/notification";
 import { useSupabaseClient, useUser } from "@supabase/auth-helpers-react";
+import { definitions } from "lib/database";
 import type { NextPage } from "next";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -10,7 +11,9 @@ const Profile: NextPage = () => {
   const router = useRouter();
   const supabaseClient = useSupabaseClient();
   const [profile, setProfile] = useState();
-  const [profileFoodList, setProfileFoodList] = useState([]);
+  const [profileFoodList, setProfileFoodList] = useState<
+    definitions["foods"][]
+  >([]);
   const user = useUser();
   const isOwner = user?.id === router.query.id;
 
@@ -65,7 +68,7 @@ const Profile: NextPage = () => {
 
       if (error) throw error;
 
-      setProfileFoodList(data as []);
+      setProfileFoodList(data);
     } catch {
       showNotificationError("Failed to fetch profile food list.");
     }

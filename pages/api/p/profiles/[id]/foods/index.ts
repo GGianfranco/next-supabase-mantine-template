@@ -1,4 +1,4 @@
-import { logApiCall, LogInfo } from "@/utils/analytics";
+import { logApiCall } from "@/utils/analytics";
 import rateLimit from "@/utils/rate-limit";
 import { createServerSupabaseClient } from "@supabase/auth-helpers-nextjs";
 import type { NextApiRequest, NextApiResponse } from "next";

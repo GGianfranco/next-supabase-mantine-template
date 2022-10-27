@@ -3,10 +3,11 @@ import { useSupabaseClient } from "@supabase/auth-helpers-react";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { showNotificationError } from "@/utils/notification";
+import { definitions } from "lib/database";
 
 const ProfileList: NextPage = () => {
   const supabaseClient = useSupabaseClient();
-  const [profileList, setProfileList] = useState<[] | null>([]);
+  const [profileList, setProfileList] = useState<definitions["profiles"][]>([]);
 
   // Fetch profile list on page load.
   useEffect(() => {
@@ -32,7 +33,7 @@ const ProfileList: NextPage = () => {
     try {
       const { data, error } = await supabaseClient.from("profiles").select();
       if (error) throw error;
-      setProfileList(data as []);
+      setProfileList(data);
     } catch {
       showNotificationError("Failed to fetch profile list.");
       // Log error here.
