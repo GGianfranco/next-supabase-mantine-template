@@ -8,7 +8,11 @@ import { GoogleIcon } from "./GoogleIcon";
 import { FacebookIcon } from "./FacebookIcon";
 import { MagicLinkIcon } from "./MagicLinkIcon";
 
-export function GoogleButton(props: ButtonProps) {
+export interface ButtonPropsExtended extends ButtonProps {
+  onClick?: () => void;
+}
+
+export function GoogleButton(props: ButtonPropsExtended) {
   return (
     <Button
       leftIcon={<GoogleIcon />}
@@ -19,7 +23,7 @@ export function GoogleButton(props: ButtonProps) {
   );
 }
 
-export function FacebookButton(props: ButtonProps) {
+export function FacebookButton(props: ButtonPropsExtended) {
   return (
     <Button
       leftIcon={<FacebookIcon />}
@@ -35,7 +39,7 @@ export function FacebookButton(props: ButtonProps) {
   );
 }
 
-export function DiscordButton(props: ButtonProps) {
+export function DiscordButton(props: ButtonPropsExtended) {
   return (
     <Button
       leftIcon={<DiscordIcon size={16} />}
@@ -67,7 +71,7 @@ export function TwitterButton(
   );
 }
 
-export function GithubButton(props: ButtonProps) {
+export function GithubButton(props: ButtonPropsExtended) {
   return (
     <Button
       {...props}
@@ -85,7 +89,7 @@ export function GithubButton(props: ButtonProps) {
   );
 }
 
-export function MagicLinkButton(props: ButtonProps) {
+export function MagicLinkButton(props: ButtonPropsExtended) {
   return (
     <Button
       leftIcon={<MagicLinkIcon />}

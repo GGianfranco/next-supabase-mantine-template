@@ -1,13 +1,13 @@
 import type { NextPage } from "next";
-import { useSupabaseClient, useUser } from "@supabase/auth-helpers-react";
+import { useSupabaseClient } from "@supabase/auth-helpers-react";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { showNotificationError } from "@/utils/notification";
+import { definitions } from "lib/database";
 
 const FoodList: NextPage = () => {
   const supabaseClient = useSupabaseClient();
-  const [foodList, setFoodList] = useState<[] | null>([]);
-  const [loading, setLoading] = useState(true);
+  const [foodList, setFoodList] = useState<definitions["foods"][]>([]);
 
   // Fetch food list on page load.
   useEffect(() => {
@@ -15,7 +15,7 @@ const FoodList: NextPage = () => {
   }, []);
 
   // Fetch food list when there is a change in foods table.
-  const channel = supabaseClient
+  supabaseClient
     .channel("db-changes")
     .on(
       "postgres_changes",
@@ -24,21 +24,18 @@ const FoodList: NextPage = () => {
         schema: "public",
         table: "foods",
       },
-      (payload) => fetchFoodList()
+      () => fetchFoodList()
     )
     .subscribe();
 
   // Fetch food list from database.
   const fetchFoodList = async () => {
     try {
-      setLoading(true);
       const { data, error } = await supabaseClient.from("foods").select();
       if (error) throw error;
       setFoodList(data);
-    } catch (error) {
-      showNotificationError(error.message);
-    } finally {
-      setLoading(false);
+    } catch {
+      showNotificationError("Failed to fetch food list.");
     }
   };
 
