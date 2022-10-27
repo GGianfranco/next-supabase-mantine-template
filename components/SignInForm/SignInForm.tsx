@@ -24,10 +24,12 @@ import {
   showNotificationError,
   showNotificationInfo,
 } from "@/utils/notification";
+import { useRouter } from "next/router";
 
 export function SignInForm(props: PaperProps) {
   const supabaseClient = useSupabaseClient();
   const [loading, setLoading] = useState(false);
+  const router = useRouter();
 
   const emailForm = useForm({
     initialValues: {
@@ -98,6 +100,8 @@ export function SignInForm(props: PaperProps) {
         password,
       });
       if (error) throw error;
+
+      await router.push("/");
 
       // Save to anaylitics here.
     } catch {

@@ -201,9 +201,9 @@ export function RegisterForm(props: PaperProps) {
         </Stack>
 
         <Group position="apart" mt="xl">
-          <Link href="/register" passHref>
+          <Link href="/sign-in" passHref>
             <Anchor component="a" type="button" color="dimmed" size="xs">
-              Don&apos;t have an account? Register
+              Don&apos;t have an account? Sign in
             </Anchor>
           </Link>
           <Button disabled={loading} type="submit">
