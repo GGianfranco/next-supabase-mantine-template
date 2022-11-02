@@ -50,6 +50,16 @@ export function Layout({ children }: { children: JSX.Element }) {
               </Link>
             )}
             {user && (
+              <Link href="/p/hell-weeks/week-3/images" passHref>
+                <Button component="a">Images</Button>
+              </Link>
+            )}
+            {user && (
+              <Link href="/p/hell-weeks/week-3/peer-reviews" passHref>
+                <Button component="a">Peer reviews</Button>
+              </Link>
+            )}
+            {user && (
               <Button size="lg" onClick={handleSignOut}>
                 Sign out
               </Button>

@@ -11,6 +11,7 @@ import {
 } from "@supabase/auth-helpers-react";
 // import { useRouter } from "next/router";
 import { Layout } from "@/components/Layout";
+import { Database } from "lib/database.types";
 
 function App({
   Component,
