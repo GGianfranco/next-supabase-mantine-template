@@ -4,9 +4,8 @@
 
 import { serve } from "https://deno.land/std@0.131.0/http/server.ts";
 import { corsHeaders } from "../_shared/cors.ts";
-import formidable from "npm:formidable";
-import fs from "npm:fs";
-import sharp from "npm:sharp";
+import formidable from "https://github.com/node-formidable/formidable";
+import sharp from "https://www.npmjs.com/package/sharp";
 
 serve(async (req) => {
   // This is needed if you're planning to invoke your function from a browser.

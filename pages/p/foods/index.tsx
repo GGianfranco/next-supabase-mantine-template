@@ -4,10 +4,13 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { showNotificationError } from "@/utils/notification";
 import { definitions } from "lib/database";
+import { Database } from "lib/database.types";
 
 const FoodList: NextPage = () => {
   const supabaseClient = useSupabaseClient();
-  const [foodList, setFoodList] = useState<definitions["foods"][]>([]);
+  const [foodList, setFoodList] = useState<
+    Database["public"]["Tables"]["foods"]["Row"][]
+  >([]);
 
   // Fetch food list on page load.
   useEffect(() => {
